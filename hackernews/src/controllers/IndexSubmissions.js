@@ -10,7 +10,8 @@ class IndexSubmissions extends Component {
     
     this.state = {
       loading: true,
-      Submissions: []
+      Submissions: [],
+      Votes: []
     };
   }
 

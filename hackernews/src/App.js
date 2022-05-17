@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { Navigate , Route, Routes, BrowserRouter} from "react-router-dom";
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import IndexSubmissions from "./controllers/IndexSubmissions";
 
@@ -15,7 +15,7 @@ class App extends Component {
 
     this.state = {
       loading: true,
-      user: {}
+      user: {},
     };
   }
 
@@ -34,7 +34,9 @@ class App extends Component {
     const { loading, user } = this.state;
     return (
       loading ?
-      <h1>LOADING</h1>
+      <div style={{display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
+          <CircularProgress />
+      </div>
       :
       <>
         <div style={{ height: '10px' }}></div>

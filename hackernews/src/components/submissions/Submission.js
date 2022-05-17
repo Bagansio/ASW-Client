@@ -23,21 +23,30 @@ class Submission extends Component {
   } 
 
   onClickUnvote() {
-    APIService.delete('/submission/' + this.state.submission.id + '/votes').then(
+    APIService.delete('/submissions/' + this.state.submission.id + '/votes').then(
       response => {
-        this.setState({
-            submission: response.data,
-        });
+          if (response.status === 200){
+            let sub = this.state.submission;
+            sub.status = "unvoted"
+            this.setState({
+                submission: sub
+              }); 
+          }
       }
     );
   }
 
   onClickVote() {
-    APIService.post('/submission/' + this.state.submission.id + '/votes').then(
+    APIService.post('/submissions/' + this.state.submission.id + '/votes', {}).then(
       response => {
-        this.setState({
-          submission: response.data,
-        });
+          console.log(response)
+        if (response.status === 200){
+            let sub = this.state.submission;
+            sub.status = "voted"
+            this.setState({
+                submission: sub
+              }); 
+        }
       }
     );
   }
