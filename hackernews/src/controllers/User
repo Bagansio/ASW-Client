@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import APIService from "../services/APIService";
-import EditUser from "../components/users/EditUser";
-import ShowUser from "../components/users/ShowUser";
+import EditUsers from "../components/users/EditUsers";
+import ShowUsers from "../components/users/ShowUsers";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class User extends Component {
@@ -28,9 +28,9 @@ class User extends Component {
   renderUser(user) {
     return (
       user.id === 1 ?
-        <EditUser user={user}/>
+        <EditUsers user={user}/>
       :
-        <ShowUser user={user}/>
+        <ShowUsers user={user}/>
     )
   }
 
