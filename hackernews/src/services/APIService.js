@@ -1,23 +1,20 @@
 import axios from "axios";
 
-const API_URL = "https://cors-anywhere.herokuapp.com/https://asw-2022.herokuapp.com/api";
-const token = 'Token c5307996d4ab85032a347eed56a84c855adc807f';
+const API_URL = "https://asw-2022.herokuapp.com/api";
+const token = 'Token ba71b3f95008b8cf99f81a24bcec73dce1467e21';
 const headers = {
     accept: 'application/json',
     Authorization: token,
+    
 
 }
 
-const instance = axios.create({
-    withCredentials: true,
-    baseURL: API_URL
-    
-})
+
 
 class APIService {
 
     get(route) {
-        return axios.get(API_URL + route, { headers: headers });
+        return axios.get(API_URL + route , { headers: headers });
     }
     
     post(route, body) {

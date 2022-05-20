@@ -1,0 +1,50 @@
+import React, { Component } from "react";
+import APIService from "../services/APIService";
+import EditUser from "../components/users/EditUser";
+import ShowUser from "../components/users/ShowUser";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+class User extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      user: {},
+      loading: true
+    };
+  }
+
+  componentDidMount() {
+    APIService.get('/users/' + this.props.match.params.id).then(
+      response => {
+        this.setState({
+          user: response.data,
+          loading: false
+        });
+      }
+    );
+  }
+
+  renderUser(user) {
+    return (
+      user.id === 1 ?
+        <EditUser user={user}/>
+      :
+        <ShowUser user={user}/>
+    )
+  }
+
+  render() {
+    const { loading, user } = this.state;
+    return (
+      loading ? 
+        <div style={{display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
+          <CircularProgress />
+        </div>
+      :
+        this.renderUser(user)
+    );
+  }
+}
+
+export default User;
