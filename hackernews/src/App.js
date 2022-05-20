@@ -4,10 +4,12 @@ import APIService from "./services/APIService";
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
-import { Navigate , Route, Routes, BrowserRouter} from "react-router-dom";
+import { Navigate , Route, Routes, BrowserRouter, useParams} from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import IndexSubmissions from "./controllers/IndexSubmissions";
+import UserSubmissions from "./controllers/UserSubmissions";
+import UpvotedSubmissions from "./controllers/UpvotedSubmissions";
 
 class App extends Component {
   constructor(props) {
@@ -44,10 +46,10 @@ class App extends Component {
             <div className="container">
               <nav className="mb-1 nav navbar-expand-lg navbar-light bg-hacker-news">
                 <ul className="navbar-nav ml-2">
-                  <li className="nav-item"><a className="navbar-brand" style={{fontWeight: 'bold'}} href="/submissions">Hacker News</a></li>
-                  <li className="nav-item"><a className="nav-link" href="/submissions/new">News</a></li>
+                  <li className="nav-item"><a className="navbar-brand" style={{fontWeight: 'bold'}} href="/">Hacker News</a></li>
+                  <li className="nav-item"><a className="nav-link" href="/newest">News</a></li>
                   <li className="nav-item"><a className="nav-link" href="/comments/threads">Threads</a></li>
-                  <li className="nav-item"><a className="nav-link" href="/submissions/ask">Ask</a></li>
+                  <li className="nav-item"><a className="nav-link" href="/ask">Ask</a></li>
                   <li className="nav-item"><a className="nav-link" href="/submissions/submit">Submit</a></li>
                 </ul>
                 <ul className="navbar-nav ml-auto nav-flex-icons">
@@ -61,9 +63,13 @@ class App extends Component {
             </div>
             <BrowserRouter>
               <Routes>
-                  <Route exact path="/" element={<IndexSubmissions/>} />
-                  <Route exact path="/submissions" element={<IndexSubmissions/>} />
-                  <Route component={() => <h3 className="mt-4" align="center">404 Not Found</h3>} />
+                  <Route exact path="*" element={<IndexSubmissions query={"?ordering=-votes"}/>} />
+                  <Route exact path="/newest" element={<IndexSubmissions query={"?ordering=-created_at"}/>} />
+                  <Route exact path="/ask" element={<IndexSubmissions query={"asks"}/>} />
+
+                  <Route exact path="/submitted/:id/" element={<UserSubmissions />} />
+                  <Route exact path="/upvoted/submissions" element={<UpvotedSubmissions id={this.state.user.user.id} />} />
+                  <Route element={() => <h3 className="mt-4" align="center">404 Not Found</h3>} />
                 </Routes>
             </BrowserRouter>
           </div>
