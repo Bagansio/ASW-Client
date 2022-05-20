@@ -15,7 +15,7 @@ class User extends Component {
   }
 
   componentDidMount() {
-    APIService.get('/users/' + this.props.match.params.id).then(
+    APIService.get('/users/' +  window.location.href.split('/')[4]).then(
       response => {
         this.setState({
           user: response.data,
@@ -27,7 +27,7 @@ class User extends Component {
 
   renderUser(user) {
     return (
-      user.id === 1 ?
+      user.user.id === 1 ?
         <EditUsers user={user}/>
       :
         <ShowUsers user={user}/>

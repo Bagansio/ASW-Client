@@ -19,16 +19,14 @@ export default class ShowUser extends Component {
               <tr className="default">
                 <td valign="top">user:</td>
                 <td>
-                  <a className="default" href={ '/users/' + user.id }>
-                    { user.username }
-                  </a>
+                    { user.user.username }
                 </td>
               </tr>
               <tr className="default">
                 <td valign="top">created:</td>
-                <td>
-                  <div className="default">{ Moment(user.created_at).fromNow() }</div>
-                </td>
+                  <td>
+                    { user.created}
+                  </td>
               </tr>
               <tr className="default">
                 <td valign="top">karma:</td>
@@ -37,15 +35,13 @@ export default class ShowUser extends Component {
               <tr className="default">
                 <td valign="top">about:</td>
                 <td>
-                  <a className="default" href={ '/users/' + user.about }>
-                    { user.username }
-                  </a>
+                    { user.about }
                 </td>
               </tr>
               <tr>
                 <td></td>
                 <td>
-                  <a className="pagetop" href={ '/users/' + user.id + '/submissions'  }>
+                  <a className="pagetop" href={ '/users/' + user.user.id + '/submissions'  }>
                     <u>submissions</u>
                   </a>
                 </td>
@@ -53,7 +49,7 @@ export default class ShowUser extends Component {
               <tr>
                 <td></td>
                 <td>
-                  <a className="pagetop" href={ '/users/' + user.id + '/comments' }>
+                  <a className="pagetop" href={ '/users/' + user.user.id + '/comments' }>
                     <u>comments</u>
                   </a>
                 </td>

@@ -63,20 +63,7 @@ export default class EditUser extends Component {
             <tbody className="default">
               <tr className="default">
                 <td valign="top">user: </td>
-                <td>
-                  <Input 
-                    type="text"
-                    className="form-control"
-                    name="username"
-                    size="60"
-                    placeholder="Username"
-                    value={ user.username }
-                    onChange={ this.onChangeUsername }
-                  />
-                  { errors['username'] && 
-                    <div className="alert alert-danger">{ errors['username'] }</div>
-                  }
-                </td>
+                <td>{ user.user.username}</td>
               </tr>
               <tr className="default">
                 <td valign="top">created: </td>
@@ -129,7 +116,7 @@ export default class EditUser extends Component {
               <tr>
                   <td></td>
                   <td>
-                    <a className="pagetop" href={ '/users/' + user.id + '/submissions' }>
+                    <a className="pagetop" href={ '/users/' + user.user.id + '/submissions' }>
                       <u>submissions</u>
                     </a>
                   </td>
@@ -137,7 +124,7 @@ export default class EditUser extends Component {
               <tr>
                 <td></td>
                 <td>
-                  <a className="pagetop" href={ '/users/' + user.id + '/comments' }>
+                  <a className="pagetop" href={ '/users/' + user.user.id + '/comments' }>
                     <u>comments</u>
                   </a>
                 </td>
@@ -145,11 +132,11 @@ export default class EditUser extends Component {
               <tr>
                 <td></td>
                 <td>
-                  <a className="pagetop" href={ '/users/' + user.id + '/voted_submissions' }>
+                  <a className="pagetop" href={ '/users/' + user.user.id + '/voted_submissions' }>
                     <u>upvoted submissions</u>
                   </a>
                   { ' / ' }
-                  <a className="pagetop" href={ '/users/' + user.id + '/voted_comments' }>
+                  <a className="pagetop" href={ '/users/' + user.user.id + '/voted_comments' }>
                     <u>comments</u>
                   </a>
                   { ' (private)' }

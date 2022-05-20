@@ -8,6 +8,8 @@ import { Navigate , Route, Routes, BrowserRouter} from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import IndexSubmissions from "./controllers/IndexSubmissions";
+import User from "./controllers/User";
+import UserSubmissions from "./controllers/UserSubmissions";
 
 class App extends Component {
   constructor(props) {
@@ -62,6 +64,8 @@ class App extends Component {
             <BrowserRouter>
               <Routes>
                   <Route exact path="/" element={<IndexSubmissions/>} />
+                  <Route exact path="/users/:id" element={<User/>} />
+                  <Route exact path="/users/:id/submissions" element={<UserSubmissions/>} />
                   <Route exact path="/submissions" element={<IndexSubmissions/>} />
                   <Route component={() => <h3 className="mt-4" align="center">404 Not Found</h3>} />
                 </Routes>
