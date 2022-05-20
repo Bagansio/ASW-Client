@@ -37,7 +37,7 @@ export default class EditUser extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      APIService.put('/users/' + this.state.user.id, this.state.user).then(
+      APIService.put('/users/' + this.state.user.user.id, this.state.user).then(
         response => {
           this.setState({
             user: response.data,
