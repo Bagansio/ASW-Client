@@ -25,7 +25,7 @@ export default class ShowUser extends Component {
               <tr className="default">
                 <td valign="top">created:</td>
                   <td>
-                    { user.created}
+                      { Moment(this.state.user.user.date_joined).fromNow() }
                   </td>
               </tr>
               <tr className="default">

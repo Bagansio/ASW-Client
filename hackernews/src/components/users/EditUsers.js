@@ -7,6 +7,7 @@ import APIService from "../../services/APIService";
 
 export default class EditUser extends Component {
   constructor(props) {
+    
     super(props);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.onChangeAbout = this.onChangeAbout.bind(this);
@@ -15,7 +16,10 @@ export default class EditUser extends Component {
     this.state = {
       user: props.user,
       errors: {},
-      message: ''
+      message: '',
+      about : null,
+      email: null
+
     };
   }
 
@@ -37,7 +41,22 @@ export default class EditUser extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
-      APIService.put('/users/' + this.state.user.user.id, this.state.user).then(
+      let body = {};
+      if (this.state.about !== null){
+        if(this.state.about === "")
+          body['about'] = null;
+        else
+          body['about'] = this.state.about;
+      }
+      if (this.state.email !== null){
+        if(this.state.email === "")
+          body['email'] = null;
+        else
+          body['email'] = this.state.email;
+      }
+
+      
+      APIService.put('/users/' + this.state.user.user.id + '/', body ).then(
         response => {
           this.setState({
             user: response.data,
@@ -45,9 +64,10 @@ export default class EditUser extends Component {
             message: 'Updated!'
           });
         }, error => {
+          console.log(error.response)
           this.setState({
             errors: error.response.data.errors,
-            message: ''
+            message: 'Error!'
           });
         }
       );
@@ -69,7 +89,7 @@ export default class EditUser extends Component {
                 <td valign="top">created: </td>
                 <td>
                   <div className="default">
-                    { Moment(user.created_at).fromNow() }
+                    { Moment(this.state.user.user.date_joined).fromNow() }
                   </div>
                 </td>
               </tr>
@@ -86,7 +106,7 @@ export default class EditUser extends Component {
                     name="about"
                     size="256"
                     placeholder="About"
-                    value={ user.about }
+                    value={ this.state.user.about }
                     onChange={ this.onChangeAbout }
                   />
                   { errors['about'] && 
@@ -99,12 +119,12 @@ export default class EditUser extends Component {
                 <td valign="top">email: </td>
                 <td>
                   <Input
-                    type="text"
+                    type="email"
                     className="form-control"
                     name="email"
                     size="60"
                     placeholder="Email"
-                    value={ user.email }
+                    value={ this.state.user.email }
                     onChange={ this.onChangeEmail }
                   />
                   { errors['email'] && 
