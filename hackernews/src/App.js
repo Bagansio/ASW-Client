@@ -8,6 +8,7 @@ import { Navigate , Route, Routes, BrowserRouter, useParams} from "react-router-
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import IndexSubmissions from "./controllers/IndexSubmissions";
+import User from "./controllers/User";
 import UserSubmissions from "./controllers/UserSubmissions";
 import UpvotedSubmissions from "./controllers/UpvotedSubmissions";
 
@@ -66,7 +67,8 @@ class App extends Component {
                   <Route exact path="*" element={<IndexSubmissions query={"?ordering=-votes"}/>} />
                   <Route exact path="/newest" element={<IndexSubmissions query={"?ordering=-created_at"}/>} />
                   <Route exact path="/ask" element={<IndexSubmissions query={"asks"}/>} />
-
+                  <Route exact path="/users/:id" element={<User/>} />
+                  <Route exact path="/users/:id/submissions" element={<UserSubmissions/>} />
                   <Route exact path="/submitted/:id/" element={<UserSubmissions />} />
                   <Route exact path="/upvoted/submissions" element={<UpvotedSubmissions id={this.state.user.user.id} />} />
                   <Route element={() => <h3 className="mt-4" align="center">404 Not Found</h3>} />
