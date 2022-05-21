@@ -11,6 +11,7 @@ import IndexSubmissions from "./controllers/IndexSubmissions";
 import User from "./controllers/User";
 import UserSubmissions from "./controllers/UserSubmissions";
 import UpvotedSubmissions from "./controllers/UpvotedSubmissions";
+import SubmitSubmission from './components/submissions/SubmitSubmission';
 
 class App extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class App extends Component {
                   <li className="nav-item"><a className="nav-link" href="/newest">News</a></li>
                   <li className="nav-item"><a className="nav-link" href="/comments/threads">Threads</a></li>
                   <li className="nav-item"><a className="nav-link" href="/ask">Ask</a></li>
-                  <li className="nav-item"><a className="nav-link" href="/submissions/submit">Submit</a></li>
+                  <li className="nav-item"><a className="nav-link" href="/submit">Submit</a></li>
                 </ul>
                 <ul className="navbar-nav ml-auto nav-flex-icons">
                   <li className="nav-item">
@@ -67,6 +68,7 @@ class App extends Component {
                   <Route exact path="*" element={<IndexSubmissions query={"?ordering=-votes"}/>} />
                   <Route exact path="/newest" element={<IndexSubmissions query={"?ordering=-created_at"}/>} />
                   <Route exact path="/ask" element={<IndexSubmissions query={"asks"}/>} />
+                  <Route exact path="/submit" element={<SubmitSubmission />} />
                   <Route exact path="/users/:id" element={<User/>} />
                   <Route exact path="/users/:id/submissions" element={<UserSubmissions/>} />
                   <Route exact path="/submitted/:id/" element={<UserSubmissions />} />
