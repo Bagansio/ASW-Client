@@ -5,9 +5,21 @@ export default class ListSubmissions extends Component {
   constructor(props) {
     super(props);
 
+    this.sort_submissions = this.sort_submissions.bind(this)
+
     this.state = {
       submissions: props.submissions
     };
+  }
+
+  sort_submissions() {
+    
+    if(! window.location.pathname.includes("newest")){
+      let temp = this.state.submissions;
+      this.setState({
+        submissions: temp.sort((a,b) => b.votes - a.votes),
+      })
+    }
   }
 
   render() {    
@@ -19,7 +31,7 @@ export default class ListSubmissions extends Component {
         <div className="col">
           { submissions.map((submission) => {
               index++;
-              return <Submission key={submission.id} index={index} submission={submission} />
+              return <Submission sort={this.sort_submissions} key={submission.id} index={index} submission={submission} />
             })
           }
         </div>
