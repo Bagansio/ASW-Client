@@ -28,28 +28,39 @@ class Submission extends Component {
           if (response.status === 200){
             let sub = this.state.submission;
             sub.status = "unvoted"
+            sub.votes -= 1
             this.setState({
                 submission: sub
-              }); 
+              });
+            
+            this.props.sort() 
           }
       }
     );
   }
 
   onClickVote() {
-    APIService.post('/submissions/' + this.state.submission.id + '/votes', {}).then(
+    APIService.post('/submissions/' + this.state.submission.id + '/votes/', {}).then(
       response => {
-          console.log(response)
         if (response.status === 200){
             let sub = this.state.submission;
             sub.status = "voted"
+            sub.votes += 1
             this.setState({
                 submission: sub
               }); 
+            this.props.sort() 
         }
       }
     );
   }
+
+ renderAsk(){
+   if(this.state.submission.url === null){
+     return "ASK HN:" 
+   }
+   return null
+ }
 
   renderStatus(status) {
     const htmlStatus = {
@@ -78,11 +89,12 @@ class Submission extends Component {
               <a 
               className="link"
               href={ 
-                submission.type === 'url' ? 
+                submission.url !== null ? 
                 submission.url
                 : 
                   '/comment/' + submission.id
               }>
+                { this.renderAsk() }
                 { submission.title }
               </a>
               &nbsp;

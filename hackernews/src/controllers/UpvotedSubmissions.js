@@ -11,18 +11,19 @@ class IndexSubmissions extends Component {
     this.state = {
       loading: true,
       Submissions: [],
-      Votes: []
+      Votes: [],
+      
     };
   }
 
   componentDidMount() {
     console.log(this.props.query)
-    APIService.get('/submissions/' + this.props.query).then(
+    APIService.get('/users/' + this.props.id + '/voted_submission').then(
       response => {
         this.setState({
-            Submissions: response.data,
-          loading: false
-        });
+          Submissions: response.data,
+        loading: false
+      });
       }
     );
   }
@@ -34,7 +35,7 @@ class IndexSubmissions extends Component {
         <div style={{display: 'flex', justifyContent: 'center', marginTop: '200px' }}>
           <CircularProgress />
         </div>
-      :
+      : 
         <ListSubmissions submissions={ Submissions } />
     );
   }
