@@ -92,7 +92,7 @@ class Submission extends Component {
                 submission.url !== null ? 
                 submission.url
                 : 
-                  '/comment/' + submission.id
+                  '/submission/' + submission.id
               }>
                 { this.renderAsk() }
                 { submission.title }
@@ -128,7 +128,7 @@ class Submission extends Component {
                 </>
               }
               <span className = "subtext">|</span>&nbsp;
-              <a className="subtext" href={ '/comment/' + submission.id }>
+              <a className="subtext" href={ '/submission/' + submission.id }>
                 { submission.comments + ' comments' }
               </a>
             </td>

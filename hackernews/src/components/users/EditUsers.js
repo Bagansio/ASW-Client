@@ -152,11 +152,11 @@ export default class EditUser extends Component {
               <tr>
                 <td></td>
                 <td>
-                  <a className="pagetop" href={ '/users/' + user.user.id + '/voted_submissions' }>
+                  <a className="pagetop" href={ '/upvoted/submissions' }>
                     <u>upvoted submissions</u>
                   </a>
                   { ' / ' }
-                  <a className="pagetop" href={ '/users/' + user.user.id + '/voted_comments' }>
+                  <a className="pagetop" href={ '/upvoted/comments' }>
                     <u>comments</u>
                   </a>
                   { ' (private)' }
