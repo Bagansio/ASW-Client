@@ -16,7 +16,6 @@ class IndexSubmissions extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.query)
     APIService.get('/submissions/' + this.props.query).then(
       response => {
         this.setState({

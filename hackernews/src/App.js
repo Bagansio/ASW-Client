@@ -54,7 +54,7 @@ class App extends Component {
                 <ul className="navbar-nav ml-2">
                   <li className="nav-item"><a className="navbar-brand" style={{fontWeight: 'bold'}} href="/">Hacker News</a></li>
                   <li className="nav-item"><a className="nav-link" href="/newest">News</a></li>
-                  <li className="nav-item"><a className="nav-link" href="/comments/threads">Threads</a></li>
+                  <li className="nav-item"><a className="nav-link" href={"/users/"+user.user.id+ "/comments"}>Threads</a></li>
                   <li className="nav-item"><a className="nav-link" href="/ask">Ask</a></li>
                   <li className="nav-item"><a className="nav-link" href="/submit">Submit</a></li>
                 </ul>
