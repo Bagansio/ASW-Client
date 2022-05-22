@@ -19,7 +19,7 @@ class UserComments extends Component {
     APIService.get('/users/' + id + '/comments').then(
       response => {
         this.setState({
-          comments: response.data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()),
+          comments: response.data.sort((a, b) => b.id - a.id),
           loading: false
         });
       }

@@ -37,7 +37,7 @@ export default class SubmissionComments extends Component {
       responses => {
         this.setState({
           submission: responses[0].data,
-          comments: responses[1].data,
+          comments: responses[1].data.sort((a,b) => b.id - a.id),
           loading: false,
         });
       }
