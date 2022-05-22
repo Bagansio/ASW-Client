@@ -50,16 +50,11 @@ export default class SubmitSubmission extends Component {
         text: this.state.text
       }).then(
         response => {
-            console.log(response.data)
-            this.setState({
-                url: null,
-                title: null,
-                text: null,
-            })
+            window.location.href = "submission/" + response.data.id;
         },
         error => {
             if(error.response.data.url_to !== null){
-                window.location.href = "submissions/" + error.response.data.url_to.split('/')[5];
+                window.location.href = "submission/" + error.response.data.url_to.split('/')[5];
 
             }
             console.log(error.response.data.url_to)

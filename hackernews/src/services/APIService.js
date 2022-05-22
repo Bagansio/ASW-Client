@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "https://asw-2022.herokuapp.com/api";
-const token = 'Token ba71b3f95008b8cf99f81a24bcec73dce1467e21';
+const token = 'Token dd8b60cb3ffefa4c7102e5c255752e28eedca1a7';
 const headers = {
     accept: 'application/json',
     Authorization: token,

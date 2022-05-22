@@ -100,7 +100,7 @@ export default class Comment extends Component {
   renderParent() {
       if(this.state.comment.parent !== null){
           return(
-              <span> | <a className="subtext"   href={"#comment"+ this.state.comment.parent.id }>parent</a></span>
+              <span> | <a className="subtext"   href={"#comment"+ this.state.comment.parent.id }>parent -> {this.state.comment.parent.id} </a></span>
             
           )
       }
@@ -120,7 +120,7 @@ export default class Comment extends Component {
                       { this.renderStatus(comment.status) }
                     </td>
                     <td>
-                      <a  id={ "comment" + comment.id } className="yclinks" href={ '/users/' + comment.author.id }>{ comment.author.username }</a>&nbsp;
+                      <a  id={ "comment" + comment.id } className="yclinks" href={ '/users/' + comment.author.id }>{comment.id}.{ comment.author.username }</a>&nbsp;
                       <span className="subtext">
                         { Moment(comment.created_at).fromNow() + ' ' }
                       </span>
