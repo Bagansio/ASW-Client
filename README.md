@@ -9,4 +9,4 @@
 
 **Framework: REACT**
 
-**API:** https://asw-client.herokuapp.com/api
+**API:** https://asw-client.herokuapp.com
