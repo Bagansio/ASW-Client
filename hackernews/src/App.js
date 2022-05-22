@@ -12,6 +12,10 @@ import User from "./controllers/User";
 import UserSubmissions from "./controllers/UserSubmissions";
 import UpvotedSubmissions from "./controllers/UpvotedSubmissions";
 import SubmitSubmission from './components/submissions/SubmitSubmission';
+import SubmissionComments  from './components/comments/SubmissionComments';
+import Reply  from './components/comments/Reply';
+import UserComments from './controllers/UserComments';
+import UpvotedComments from './controllers/UpvotedComments';
 
 class App extends Component {
   constructor(props) {
@@ -65,14 +69,19 @@ class App extends Component {
             </div>
             <BrowserRouter>
               <Routes>
-                  <Route exact path="*" element={<IndexSubmissions query={"?ordering=-votes"}/>} />
+                  <Route exact path="/" element={<IndexSubmissions query={"?ordering=-votes"}/>} />
+                  <Route exact path="/news" element={<IndexSubmissions query={"?ordering=-votes"}/>} />
                   <Route exact path="/newest" element={<IndexSubmissions query={"?ordering=-created_at"}/>} />
                   <Route exact path="/ask" element={<IndexSubmissions query={"asks"}/>} />
                   <Route exact path="/submit" element={<SubmitSubmission />} />
+                  <Route exact path="/reply/:id" element={<Reply/>} />
                   <Route exact path="/users/:id" element={<User/>} />
                   <Route exact path="/users/:id/submissions" element={<UserSubmissions/>} />
+                  <Route exact path="/users/:id/comments" element={<UserComments id={this.state.user.user.id}/>} />
                   <Route exact path="/submitted/:id/" element={<UserSubmissions />} />
+                  <Route exact path="/submission/:id" element={<SubmissionComments/>} />
                   <Route exact path="/upvoted/submissions" element={<UpvotedSubmissions id={this.state.user.user.id} />} />
+                  <Route exact path="/upvoted/comments" element={<UpvotedComments id={this.state.user.user.id} />} />
                   <Route element={() => <h3 className="mt-4" align="center">404 Not Found</h3>} />
                 </Routes>
             </BrowserRouter>
